@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>UPLODED</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+<link rel="stylesheet"  href="./style.css">
+<style>
+  @keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes shine {
+    0% { background-position: -100% 50%; }
+    100% { background-position: 200% 50%; }
+  }
+
+  body {
+    background: linear-gradient(45deg, #000428, #004e92);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    font-family: Arial, sans-serif;
+  }
+
+  .form-container {
+    background: linear-gradient(135deg, rgba(0, 78, 146, 0.9), rgba(0, 4, 40, 0.9));
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 30px rgba(0, 78, 146, 0.5);
+    text-align: center;
+    width: 400px;
+    margin: auto;
+    margin-top: 100px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 78, 146, 0.3);
+  }
+
+  h1 {
+    margin-bottom: 30px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  input[type="email"], input[type="password"], input[type="text"], select {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(0, 78, 146, 0.5);
+    border-radius: 5px;
+    background: rgba(0, 4, 40, 0.6);
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus, select:focus {
+    background: rgba(0, 78, 146, 0.3);
+    box-shadow: 0 0 15px rgba(0, 78, 146, 0.5);
+    border-color: rgba(0, 78, 146, 0.8);
+  }
+
+  select option {
+    background-color: #333;
+    color: #fff;
+  }
+
+  input[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(90deg, #004e92, #000428, #004e92);
+    background-size: 200% 100%;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  input[type="submit"]:hover {
+    background-size: 200% 100%;
+    animation: shine 3s infinite linear;
+    box-shadow: 0 0 20px rgba(0, 78, 146, 0.7);
+  }
+
+  .form-link {
+    color: #f40612;
+    font-size: 14px;
+  }
+
+  .form-link a {
+    color: #f40612;
+    text-decoration: none;
+  }
+
+  .form-link a:hover {
+    text-decoration: underline;
+  }
+</style>
+</head>
+<body>
+<div class="form-container">
+  <h1>Welcome to Netflix</h1>
+  <div id="loginForm">
+    <h2>Login</h2>
+    <form id="loginForm" onsubmit="return login()">
+      <input type="email" id="loginEmail" placeholder="Email" required>
+      <input type="password" id="loginPassword" placeholder="Password" required>
+      <input type="submit" value="Login">
+    </form>
+    <p class="form-link">Don't have an account? <a href="#" onclick="toggleForm()">Sign Up</a></p>
+  </div>
+  <div id="signupForm" style="display: none;">
+    <h2>Sign Up</h2>
+    <form id="signupForm" onsubmit="return signup()">
+      <input type="text" id="signupName" placeholder="Full Name" required>
+      <input type="email" id="signupEmail" placeholder="Email" required>
+      <input type="password" id="signupPassword" placeholder="Password" required>
+      <select id="signupCategory" required>
+        <option value="" disabled selected>Select Category</option>
+        <option value="action">Action</option>
+        <option value="comedy">Comedy</option>
+        <option value="drama">Drama</option>
+        <option value="horror">Horror</option>
+        <option value="romance">Romance</option>
+        <option value="scifi">Sci-Fi</option>
+        <option value="thriller">Thriller</option>
+      </select>
+      <input type="submit" value="Sign Up">
+    </form>
+    <p class="form-link">Already have an account? <a href="#" onclick="toggleForm()">Login</a></p>
+  </div>
+</div>
+
+<script>
+  const loginForm = document.getElementById('loginForm');
+  const signupForm = document.getElementById('signupForm');
+
+  function toggleForm() {
+    loginForm.style.display = loginForm.style.display === 'none' ? 'block' : 'none';
+    signupForm.style.display = signupForm.style.display === 'none' ? 'block' : 'none';
+  }
+
+  // Rest of your Firebase authentication code goes here...
+</script>
+</body>
+</html>
